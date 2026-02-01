@@ -1409,6 +1409,7 @@ declare class Server<
    * @param {((err?: Error) => void)=} callback callback
    */
   stopCallback(callback?: ((err?: Error) => void) | undefined): void;
+  #private;
 }
 declare namespace Server {
   export {
@@ -1534,15 +1535,7 @@ type HandleFunction =
   | SimpleHandleFunction
   | NextHandleFunction
   | ErrorHandleFunction;
-type ServerOptions = import("https").ServerOptions & {
-  spdy?: {
-    plain?: boolean | undefined;
-    ssl?: boolean | undefined;
-    "x-forwarded-for"?: string | undefined;
-    protocol?: string | undefined;
-    protocols?: string[] | undefined;
-  };
-};
+type ServerOptions = import("https").ServerOptions;
 type Request<T extends BasicApplication = import("express").Application> =
   T extends ExpressApplication ? ExpressRequest : IncomingMessage;
 type Response<T extends BasicApplication = import("express").Application> =
@@ -1620,7 +1613,6 @@ type ServerType<
 > =
   | "http"
   | "https"
-  | "spdy"
   | "http2"
   | string
   | ((serverOptions: ServerOptions, application: A) => S);

@@ -790,7 +790,7 @@ module.exports = {
         multiple: false,
         path: "server.type",
         type: "enum",
-        values: ["http", "https", "spdy"],
+        values: ["http", "https"],
       },
     ],
     description: "Allows to set server and options (by default 'http').",
